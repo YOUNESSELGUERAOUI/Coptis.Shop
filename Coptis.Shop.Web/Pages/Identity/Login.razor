@@ -1,0 +1,59 @@
+﻿@page "/login"
+@layout LoginLayout
+@attribute [AllowAnonymous]
+@inject SignInManager<TUser> SignInMgr
+@inject UserManager<TUser> UserMgr
+@inject NavigationManager NavMgr
+
+
+<form @onsubmit="Submit" @onsubmit:preventDefault>
+    <h1 class="h3 mb-3 font-weight-normal">Se connecter </h1>
+    <div class="input-group mb-2">
+        <input type="text" @bind="Model.Email" class="form-control" placeholder="Email address" required>
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" @bind="Model.Password" class="form-control" placeholder="Password" required>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="alert alert-danger mt-2 mb-2" role="alert">
+           @Model.Error
+        </div>
+    }
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+    <p class="mt-5 mb-3 text-muted">&copy; Coptis Shop</p>
+</form>
+
+@code {
+    private LoginModel<TUser> Model { get; set; } = new LoginModel<TUser>();
+
+    private async Task Submit()
+    {
+        Model.Error = null;
+        TUser usr = await UserMgr.FindByEmailAsync(Model.Email);
+        if (usr == null)
+        {
+            Model.Error = "Échec de la connexion. Vérifiez votre nom d'utilisateur et votre mot de passe.";
+            return;
+        }
+
+
+        if (await SignInMgr.CanSignInAsync(usr))
+        {
+            var result = await SignInMgr.CheckPasswordSignInAsync(usr, Model.Password, true);
+            if (result.Succeeded)
+            {
+                Guid key = CookieLoginMiddleware<TUser>.AnnounceLogin(Model);
+                NavMgr.NavigateTo($"/login?key={key}", true);
+            }
+            else
+            {
+                Model.Error = "Échec de la connexion. Vérifiez votre nom d'utilisateur et votre mot de passe.";
+            }
+        }
+        else
+        {
+            Model.Error = "Votre compte est bloqué.";
+        }
+    }
+}

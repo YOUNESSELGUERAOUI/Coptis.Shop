@@ -1,0 +1,49 @@
+﻿@page "/sales"
+
+@inject ISalesService salesService
+@inject NavigationManager NavigationManager;
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Liste des achats</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Produit</th>
+                    <th>Prix unitaire</th>
+                    <th>Date d’achat</th>
+                    <th>Quantité achetée</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sale in sales)
+                {
+                    <tr>
+                        <td>@sale.User?.LastName</td>
+                        <td>@sale.User?.FirstName</td>
+                        <td>@sale.User?.Email</td>
+                        <td>@sale.Product?.ProductName</td>
+                        <td>@sale.Product?.Price</td>
+                        <td>@sale.PurchaseDate</td>
+                        <td>@sale.Quantity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code
+{
+    private IReadOnlyList<Sale> sales = new List<Sale>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        sales = await salesService.GetAllSalesAsync();
+    }
+}

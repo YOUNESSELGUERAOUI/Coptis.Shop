@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Coptis.Shop
+/Coptis.Shop.Core/bin/Debug/net7.0
+/Coptis.Shop.Core/obj
+/Coptis.Shop.Infrastructure/Coptis.Shop.Infrastructure/bin/Debug/net7.0
+/Coptis.Shop.Infrastructure/Coptis.Shop.Infrastructure/obj
+/Coptis.Shop.Web/bin/Debug
+/Coptis.Shop.Web/obj
+/Coptis.Shop.Infrastructure/obj

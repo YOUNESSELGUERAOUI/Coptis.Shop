@@ -1,0 +1,37 @@
+﻿@page "/"
+
+@inject IProductService productService
+@inject NavigationManager NavigationManager;
+
+<h3>Catalogue produits</h3>
+
+<div class="row">
+    @foreach (var product in products)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@product.ProductName</h5>
+                    <p class="card-text">Prix: @product.Price.ToString("C")</p>
+                    <p class="card-text">Stock: @product.StockQuantity</p>
+                    <button class="btn btn-primary" @onclick="() => NavigateToProductDetail(product.ProductId)">Voir les détails</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code
+{
+    private IReadOnlyList<Coptis.Shop.Core.Models.Product> products = new List<Coptis.Shop.Core.Models.Product>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await productService.GetProductsAsync();
+    }
+
+    private void NavigateToProductDetail(int productId)
+    {
+        NavigationManager.NavigateTo($"/ProductDetail/{productId}");
+    }
+}

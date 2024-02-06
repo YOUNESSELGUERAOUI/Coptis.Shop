@@ -1,0 +1,104 @@
+﻿@page "/ProductDetail/{ProductId}"
+@using Coptis.Shop.Core.Dtos
+@using System.Security.Claims
+
+@inject IProductService productService
+@inject ISalesService salesService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h3>Détail du produit</h3>
+
+@if (product != null)
+{
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@product.ProductName</h5>
+            <p class="card-text">@product.Description</p>
+            <p class="card-text">Prix: @product.Price.ToString("C")</p>
+            <p class="card-text">Stock: @product.StockQuantity</p>
+            @if (@product.StockQuantity > 0)
+            {
+                <label for="quantity">Quantité :</label>
+                <input type="number" class="form-control mb-2" id="quantity" min="1" @bind="quantity" />
+                <button class="btn btn-success mb-2" @onclick="BuyProduct">Acheter</button>
+            }
+
+            @if (!string.IsNullOrEmpty(errorMessage) && string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @errorMessage
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(successMessage) && string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-success" role="alert">
+                    @successMessage
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p><em>Chargement...</em></p>
+}
+
+@code {
+    [Parameter]
+    public string ProductId { get; set; }
+
+    private Coptis.Shop.Core.Models.Product product;
+    private int quantity = 1; // Quantité initiale
+    private string errorMessage;
+    private string successMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await productService.GetProductByIdAsync(int.Parse(ProductId));
+        if (product.StockQuantity <= 0)
+        {
+            errorMessage = "Nous sommes actuellement en rupture de stock pour cet article.";
+        }        
+    }
+
+    private async Task BuyProduct()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            CreateSaleDto createSale = new CreateSaleDto
+            {
+                ProductId = int.Parse(ProductId),
+                Quantity = quantity,
+                UserId = userId,
+            };
+
+            try
+            {
+                await salesService.CreateSaleAsync(createSale);
+                errorMessage = string.Empty;
+                successMessage = "Nous vous remercions pour votre achat. Notre équipe logistique vous contactera bientôt afin d'organiser la livraison de votre produit.";
+                await OnInitializedAsync();
+            }
+            catch (InvalidOperationException ex)
+            {
+                errorMessage = ex.Message;
+                successMessage = string.Empty;
+            }
+            catch (Exception)
+            {
+                errorMessage = "Nous faisons face à un problème technique pour le moment. Merci de réessayer plus tard.";
+                successMessage = string.Empty;
+            }
+        }
+        else
+        {
+            errorMessage = "Vous devriez être connecté pour acheter ce produit !";
+        }
+    }
+}
+
