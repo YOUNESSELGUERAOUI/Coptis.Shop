@@ -18,7 +18,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\Coptis.Shop.Core\Coptis.Shop.Core.csproj" />
+    <ProjectReference Include="..\Coptis.Shop.Core\Coptis.Shop.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,3 +10,5 @@
 /Coptis.Shop.Web/bin/Debug
 /Coptis.Shop.Web/obj
 /Coptis.Shop.Infrastructure/obj
+/.vs/ProjectEvaluation
+/Coptis.Shop.Infrastructure/bin/Debug/net7.0
