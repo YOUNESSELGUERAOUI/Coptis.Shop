@@ -7,8 +7,6 @@ namespace Coptis.Shop.Infrastructure.Context;
 
 public class CoptisShopContext : IdentityDbContext
 {
-    //public DbSet<Customer> Customers { get; set; }
-
     public CoptisShopContext(DbContextOptions<CoptisShopContext> options)
         : base(options)
     {            
