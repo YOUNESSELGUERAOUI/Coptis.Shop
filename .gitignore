@@ -12,3 +12,8 @@
 /Coptis.Shop.Infrastructure/obj
 /.vs/ProjectEvaluation
 /Coptis.Shop.Infrastructure/bin/Debug/net7.0
+/tests/Coptis.Shop.Core.Tests/bin/Debug/net7.0
+/tests/Coptis.Shop.Infrastructure.Tests/bin/Debug/net7.0/Coptis.Shop.Infrastructure.Tests.dll
+/tests/Coptis.Shop.Infrastructure.Tests/bin/Debug/net7.0/Coptis.Shop.Infrastructure.Tests.pdb
+/tests/Coptis.Shop.Core.Tests/bin/Debug/net7.0/Coptis.Shop.Core.Tests.dll
+/tests/Coptis.Shop.Core.Tests/bin/Debug/net7.0/Coptis.Shop.Core.Tests.pdb
