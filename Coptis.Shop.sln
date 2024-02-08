@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coptis.Shop", "Coptis.Shop.Web\Coptis.Shop.csproj", "{83EBA53A-0FAA-4818-AA7C-F620EB5A5778}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coptis.Shop", "src\Coptis.Shop.Web\Coptis.Shop.csproj", "{83EBA53A-0FAA-4818-AA7C-F620EB5A5778}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coptis.Shop.Core", "Coptis.Shop.Core\Coptis.Shop.Core.csproj", "{6BD6A456-A675-4D30-AD0A-BDA60F38F9F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coptis.Shop.Core", "src\Coptis.Shop.Core\Coptis.Shop.Core.csproj", "{6BD6A456-A675-4D30-AD0A-BDA60F38F9F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coptis.Shop.Infrastructure", "Coptis.Shop.Infrastructure\Coptis.Shop.Infrastructure.csproj", "{AE02C026-8E0A-48F8-BC3C-8D40E8F33E99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coptis.Shop.Infrastructure", "src\Coptis.Shop.Infrastructure\Coptis.Shop.Infrastructure.csproj", "{AE02C026-8E0A-48F8-BC3C-8D40E8F33E99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{74E1B2A2-8936-4FA6-A40D-331B25F5AF40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5623F1A3-D2A3-4B60-87E7-73083AA0A416}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coptis.Shop.Infrastructure.Tests", "tests\Coptis.Shop.Infrastructure.Tests\Coptis.Shop.Infrastructure.Tests.csproj", "{E79DA9D2-9084-464F-8AB6-C9927FEB9AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coptis.Shop.Core.Tests", "tests\Coptis.Shop.Core.Tests\Coptis.Shop.Core.Tests.csproj", "{11F049E3-D1AC-420A-9B26-8D14CC7F8A1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,24 @@ Global
 		{AE02C026-8E0A-48F8-BC3C-8D40E8F33E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE02C026-8E0A-48F8-BC3C-8D40E8F33E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE02C026-8E0A-48F8-BC3C-8D40E8F33E99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E79DA9D2-9084-464F-8AB6-C9927FEB9AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E79DA9D2-9084-464F-8AB6-C9927FEB9AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E79DA9D2-9084-464F-8AB6-C9927FEB9AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E79DA9D2-9084-464F-8AB6-C9927FEB9AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F049E3-D1AC-420A-9B26-8D14CC7F8A1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F049E3-D1AC-420A-9B26-8D14CC7F8A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F049E3-D1AC-420A-9B26-8D14CC7F8A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F049E3-D1AC-420A-9B26-8D14CC7F8A1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83EBA53A-0FAA-4818-AA7C-F620EB5A5778} = {74E1B2A2-8936-4FA6-A40D-331B25F5AF40}
+		{6BD6A456-A675-4D30-AD0A-BDA60F38F9F1} = {74E1B2A2-8936-4FA6-A40D-331B25F5AF40}
+		{AE02C026-8E0A-48F8-BC3C-8D40E8F33E99} = {74E1B2A2-8936-4FA6-A40D-331B25F5AF40}
+		{E79DA9D2-9084-464F-8AB6-C9927FEB9AD1} = {5623F1A3-D2A3-4B60-87E7-73083AA0A416}
+		{11F049E3-D1AC-420A-9B26-8D14CC7F8A1F} = {5623F1A3-D2A3-4B60-87E7-73083AA0A416}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01248BBB-E8D2-42C5-BB89-033F693EE38A}

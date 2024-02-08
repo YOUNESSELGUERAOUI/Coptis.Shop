@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Coptis.Shop.Core.Tests/1.0.0": {
+        "runtime": {
+          "Coptis.Shop.Core.Tests.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Coptis.Shop.Core.Tests/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
